@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { ListGroup, Alert } from 'reactstrap'
 
 import TaskItem from './TaskItem/TaskItem.jsx'
@@ -17,4 +18,10 @@ const TaskList = props => {
     )
 }
 
-export default TaskList
+const mapStateToProps = (state) => { //store.getState()
+    return {
+        tasks: state.tasks
+    }
+}
+
+export default connect(mapStateToProps)(TaskList)

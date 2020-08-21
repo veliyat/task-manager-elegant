@@ -2,8 +2,8 @@ import React from 'react';
 
 import Header from './components/shared/Header/Header.jsx'
 import Footer from './components/shared/Footer/Footer.jsx'
-// import TaskManager from './components/TaskManager/TaskManager.jsx'
-import Login from './components/Login/Login.jsx'
+import TaskManager from './components/TaskManager/TaskManager.jsx'
+// import Login from './components/Login/Login.jsx'
 
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
 
             <div className="row">
                 <div className="col">
-                    {/* <TaskManager /> */}
-                    <Login />
+                    <TaskManager />
+                    {/* <Login /> */}
                 </div>
             </div>
 
