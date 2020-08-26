@@ -1,21 +1,39 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ListGroup, Alert } from 'reactstrap'
 
+import { loadTasksAction } from '../../../actions/taskActions'
+
 import TaskItem from './TaskItem/TaskItem.jsx'
 
-const TaskList = props => {
-    const { tasks } = props
+class TaskList extends Component {
 
-    if (tasks.length === 0) {
-        return <Alert>No Tasks to show.</Alert>
+    // constructor(props) {
+    //     super(props)
+
+    //     console.log('Inside Constructor')
+    // }
+
+    componentDidMount() {
+        // console.log('Inside Did Mount')
+        this.props.loadTasks()
     }
 
-    return (
-        <ListGroup>
-            {tasks.map((task) => <TaskItem key={task.id} task={task} />)}
-        </ListGroup>
-    )
+    render() {
+        // console.log('Inside Render')
+
+        const { tasks } = this.props
+
+        if (tasks.length === 0) {
+            return <Alert>No Tasks to show.</Alert>
+        }
+
+        return (
+            <ListGroup>
+                {tasks.map((task) => <TaskItem key={task.id} task={task} />)}
+            </ListGroup>
+        )
+    }
 }
 
 const mapStateToProps = (state) => { //store.getState()
@@ -24,4 +42,10 @@ const mapStateToProps = (state) => { //store.getState()
     }
 }
 
-export default connect(mapStateToProps)(TaskList)
+const mapDispatchToProps = dispatch => {
+    return {
+        loadTasks: () => dispatch(loadTasksAction())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList)

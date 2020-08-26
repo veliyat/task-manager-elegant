@@ -10,6 +10,8 @@ export const getTasks = () => {
  * @param {title, description} data 
  */
 export const addTask = (data) => {
+    data.date = new Date()
+    data.completed = false
     return axios.post(taskURL, data).then(res => res.data)
 }
 
