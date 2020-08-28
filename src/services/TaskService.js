@@ -5,6 +5,10 @@ export const getTasks = () => {
     return axios.get(taskURL).then(res => res.data)
 }
 
+export const getSingleTask = id => {
+    return axios.get(taskURL + '/' + id).then(res => res.data)
+}
+
 /**
  * 
  * @param {title, description} data 
