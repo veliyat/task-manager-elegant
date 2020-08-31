@@ -2,6 +2,8 @@ import React from 'react'
 import { Row, Col } from 'reactstrap'
 import Nav from '../Nav/Nav'
 
+import Alert from '../Alert/Alert.jsx'
+
 const Header = props => {
     return (
         <>
@@ -16,6 +18,8 @@ const Header = props => {
             </Row>
 
             <hr />
+
+            <Alert />
         </>
     )
 }
