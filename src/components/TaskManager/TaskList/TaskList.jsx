@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { ListGroup, Alert } from 'reactstrap'
 
@@ -6,35 +6,51 @@ import { loadTasksAction } from '../../../actions/taskActions'
 
 import TaskItem from './TaskItem/TaskItem.jsx'
 
-class TaskList extends Component {
+const TaskList = props => {
+    const { tasks } = props
 
-    // constructor(props) {
-    //     super(props)
+    useEffect(() => { props.loadTasks() }, [])
 
-    //     console.log('Inside Constructor')
-    // }
-
-    componentDidMount() {
-        // console.log('Inside Did Mount')
-        this.props.loadTasks()
+    if (tasks.length === 0) {
+        return <Alert>No Tasks to show.</Alert>
     }
 
-    render() {
-        // console.log('Inside Render')
-
-        const { tasks } = this.props
-
-        if (tasks.length === 0) {
-            return <Alert>No Tasks to show.</Alert>
-        }
-
-        return (
-            <ListGroup>
-                {tasks.map((task) => <TaskItem key={task.id} task={task} />)}
-            </ListGroup>
-        )
-    }
+    return (
+        <ListGroup>
+            {tasks.map((task) => <TaskItem key={task.id} task={task} />)}
+        </ListGroup>
+    )
 }
+
+// class TaskList extends Component {
+
+//     // constructor(props) {
+//     //     super(props)
+
+//     //     console.log('Inside Constructor')
+//     // }
+
+//     componentDidMount() {
+//         // console.log('Inside Did Mount')
+//         this.props.loadTasks()
+//     }
+
+//     render() {
+//         // console.log('Inside Render')
+
+//         const { tasks } = this.props
+
+//         if (tasks.length === 0) {
+//             return <Alert>No Tasks to show.</Alert>
+//         }
+
+//         return (
+//             <ListGroup>
+//                 {tasks.map((task) => <TaskItem key={task.id} task={task} />)}
+//             </ListGroup>
+//         )
+//     }
+// }
 
 const mapStateToProps = (state) => { //store.getState()
     return {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
+import UserRoute from './routes/UserRoute'
+
 import Header from './components/shared/Header/Header.jsx'
 import Footer from './components/shared/Footer/Footer.jsx'
 import TaskManager from './components/TaskManager/TaskManager.jsx'
@@ -24,8 +26,8 @@ function App() {
                         <Route path="/" exact render={() => <Redirect to="/login" />} />
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
-                        <Route path="/tasks" exact component={TaskManager} />
-                        <Route path="/tasks/:id" component={TaskDetail} />
+                        <UserRoute path="/tasks" exact component={TaskManager} />
+                        <UserRoute path="/tasks/:id" component={TaskDetail} />
                         <Route path="/**" component={PageNotFound} />
                     </Switch>
                 </div>
